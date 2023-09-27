@@ -28,6 +28,8 @@ public class LabelGraphic extends GraphicOverlay.Graphic {
         bgPaint.setAlpha(50);
     }
 
+
+    
     @Override
     public synchronized void draw(Canvas canvas) {
         float x = overlay.getWidth() / 4.0f;
