@@ -293,3 +293,26 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         return bitmap;
     }
 }
+
+
+// fils de jolies //
+
+private void processTextRecognitionResult(Text texts) {
+   List<Text.TextBlock> blocks = texts.getTextBlocks();
+   if (blocks.size() == 0) {
+       showToast("No text found");
+       return;
+   }
+   mGraphicOverlay.clear();
+   for (int i = 0; i < blocks.size(); i++) {
+       List<Text.Line> lines = blocks.get(i).getLines();
+       for (int j = 0; j < lines.size(); j++) {
+           List<Text.Element> elements = lines.get(j).getElements();
+           for (int k = 0; k < elements.size(); k++) {
+               Graphic textGraphic = new TextGraphic(mGraphicOverlay, elements.get(k));
+               mGraphicOverlay.add(textGraphic);
+
+           }
+       }
+   }
+}
