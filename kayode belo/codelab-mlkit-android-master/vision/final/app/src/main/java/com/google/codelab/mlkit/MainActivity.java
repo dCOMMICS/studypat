@@ -316,3 +316,37 @@ private void processTextRecognitionResult(Text texts) {
        }
    }
 }
+
+
+// runFaceCounter
+
+private void runFaceContourDetection() {
+   InputImage image = InputImage.fromBitmap(mSelectedImage, 0);
+   FaceDetectorOptions options =
+           new FaceDetectorOptions.Builder()
+                   .setPerformanceMode(FaceDetectorOptions.PERFORMANCE_MODE_FAST)
+                   .setContourMode(FaceDetectorOptions.CONTOUR_MODE_ALL)
+                   .build();
+
+   mFaceButton.setEnabled(false);
+   FaceDetector detector = FaceDetection.getClient(options);
+   detector.process(image)
+           .addOnSuccessListener(
+                   new OnSuccessListener<List<Face>>() {
+                       @Override
+                       public void onSuccess(List<Face> faces) {
+                           mFaceButton.setEnabled(true);
+                           processFaceContourDetectionResult(faces);
+                       }
+                   })
+           .addOnFailureListener(
+                   new OnFailureListener() {
+                       @Override
+                       public void onFailure(@NonNull Exception e) {
+                           // Task failed with an exception
+                           mFaceButton.setEnabled(true);
+                           e.printStackTrace();
+                       }
+                   });
+
+}
