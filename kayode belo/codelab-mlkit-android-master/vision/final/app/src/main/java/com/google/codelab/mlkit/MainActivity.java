@@ -350,3 +350,38 @@ private void runFaceContourDetection() {
                    });
 
 }
+
+// processFaceContourDetectionResult //
+
+private void processFaceContourDetectionResult(List<Face> faces) {
+   // Task completed successfully
+   if (faces.size() == 0) {
+       showToast("No face found");
+       return;
+   }
+   mGraphicOverlay.clear();
+   for (int i = 0; i < faces.size(); ++i) {
+       Face face = faces.get(i);
+       FaceContourGraphic faceGraphic = new FaceContourGraphic(mGraphicOverlay);
+       mGraphicOverlay.add(faceGraphic);
+       faceGraphic.updateFace(face);
+   }
+}
+
+// 
+
+private void processFaceContourDetectionResult(List<Face> faces) {
+    // Task completed successfully
+    if (faces.size() == 0) {
+        showToast("No face found");
+        return;
+    }
+    mGraphicOverlay.clear();
+    for (int i = 0; i < faces.size(); ++i) {
+        Face face = faces.get(i);
+        FaceContourGraphic faceGraphic = new FaceContourGraphic(mGraphicOverlay);
+        mGraphicOverlay.add(faceGraphic);
+        faceGraphic.updateFace(face);
+    }
+ }
+
